@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 
 const Destres = () => {
   const { id } = useParams();
+  
   const [showModal, setShowModal] = useState(false);
   const [selectedCity, setSelectedCity] = useState('');
   const [cityData, setCityData] = useState([]);
