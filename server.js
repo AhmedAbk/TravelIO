@@ -50,7 +50,7 @@ app.get('/api/cities', async (req, res) => {
 app.get("/api/cities/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const result = await pool.query("SELECT * FROM cities WHERE id= $1", [id]);
+    const result = await pool.query("SELECT * FROM cities c, dest d WHERE c.destid=d.destid and c.destid= $1", [id]);
     res.json({ data: result.rows[0] });
   } catch (error) {
     console.error(error.message);

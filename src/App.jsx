@@ -15,8 +15,7 @@ import Jap from './components/Dest/Asia.jsx';
 import Mal from './components/Dest/Afr.jsx'; 
 import Dash from './components/Dashboard/Dash.jsx'; 
 import Paris from './components/Pack/Paris.jsx'; 
-import Destres from './components/Dest/destres.jsx';
-// Define your routes as an array of objects
+import Destres from './components/Dest/destres.jsx'; 
 const routes = [
   { path: '/', element: <Home /> },
   { path: '/Pack', element: <Pack /> },

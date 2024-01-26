@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 
 const Destres = () => {
   const { id } = useParams();
-  const [selectedDestination, setSelectedDestination] = useState(null);
+  const [selectedDestination, setSelectedDestination] = useState( );
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -12,6 +12,9 @@ const Destres = () => {
       try {
         const response = await fetch(`http://localhost:3001/api/cities/${id}`);
         const data = await response.json();
+
+        console.log(id); // Log the id to check if it's correct
+        console.log(data); 
 
         if (response.ok) {
           setSelectedDestination(data);
@@ -41,8 +44,8 @@ const Destres = () => {
       {/* Display information about the selected destination */}
       {selectedDestination && (
         <div>
-          <h2>{selectedDestination.destname}</h2>
-          <img src={selectedDestination.destimg} alt={selectedDestination.destname} />
+          <h2>{selectedDestination.name}</h2>
+          <img src={selectedDestination.image} alt={selectedDestination.name} />
           {/* Add more details as needed */}
         </div>
       )}
