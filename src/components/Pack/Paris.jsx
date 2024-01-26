@@ -8,7 +8,7 @@ function Paris() {
   useEffect(() => { 
     const cityId = 2;
 
-    fetch(`http://localhost:3001/api/cities/${cityId}`)
+    fetch(`http://localhost:3001/api/city/${cityId}`)
       .then(response => response.json())
       .then(data => {
         setPackageData(data.data);

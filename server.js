@@ -44,7 +44,15 @@ app.get('/api/cities', async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
-
+app.get('/api/city/:id', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT * FROM cities');
+    res.json({ data: result.rows });
+  } catch (error) {
+    console.error('Error fetching cities:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
 //get city by id
 
 app.get("/api/cities/:id", async (req, res) => {
