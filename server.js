@@ -73,7 +73,7 @@ app.get('/api/dest/:id', async (req, res) => {
   const { id } = req.params;
 
   try {
-    const { rows } = await pool.query('SELECT * FROM destinations WHERE id = $1', [id]);
+    const { rows } = await pool.query('SELECT * FROM dest WHERE destid = $1', [id]);
 
     if (rows.length > 0) {
       res.json(rows[0]);

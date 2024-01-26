@@ -10,7 +10,7 @@ const Destres = () => {
   useEffect(() => {
     const fetchDestination = async () => {
       try {
-        const response = await fetch(`http://localhost:3001/api/dest/${id}`);
+        const response = await fetch(`http://localhost:3001/api/cities/${id}`);
         const data = await response.json();
 
         if (response.ok) {
