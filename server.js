@@ -68,6 +68,24 @@ app.get('/api/dest', async (req, res) => {
   }
 });
 
+//get dest by id
+app.get('/api/dest/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const { rows } = await pool.query('SELECT * FROM destinations WHERE id = $1', [id]);
+
+    if (rows.length > 0) {
+      res.json(rows[0]);
+    } else {
+      res.status(404).json({ message: 'Destination not found' });
+    }
+  } catch (error) {
+    console.error('Error fetching destination:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+});
+
 
 //auth
 app.post('/api/register', async (req, res) => {
