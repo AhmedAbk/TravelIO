@@ -7,7 +7,7 @@ const Destres = () => {
   const [error, setError] = useState(null);
   const [destination, setDestination] = useState(null);
   const [showModal, setShowModal] = useState(false);
-  const [selectedCity, setSelectedCity] = useState(null);
+  const [selectedCity, setSelectedCity] = useState(' ');
 
   useEffect(() => {
     const fetchDestination = async () => {
@@ -40,11 +40,10 @@ const Destres = () => {
 
   const closeModal = () => {
     setShowModal(false);
-    setSelectedCity(null);
   };
 
   const getCityInformation = (city) => {
-    const { image, prices, description, duration, person, rating, reviews, name } = destination || {};
+    const { image, prices, description, duration, person, rating, reviews, name } = destination?.data || {};
 
     if (image && prices && description && duration && person && rating && reviews) {
       return (
@@ -87,25 +86,27 @@ const Destres = () => {
             <p>Loading...</p>
           ) : (
             <div className="row">
-              <div className="col-lg-4 col-md-6 mb-4">
-                <div className="package-item bg-white mb-2" onClick={() => openModal(destination.data.name)}>
-                  <img className="img-fluid" src={destination.data.image} alt="" />
-                  <div className="p-4">
-                    <div className="d-flex justify-content-between mb-3">
-                      <small className="m-0"><i className="fa fa-map-marker-alt text-primary mr-2" />{destination.data.name}</small>
-                      <small className="m-0"><i className="fa fa-calendar-alt text-primary mr-2" />{destination.data.duration}</small>
-                      <small className="m-0"><i className="fa fa-user text-primary mr-2" />{destination.data.person}</small>
-                    </div>
-                    <a className="h5 text-decoration-none">{destination.data.description}</a>
-                    <div className="border-top mt-4 pt-4">
-                      <div className="d-flex justify-content-between">
-                        <h6 className="m-0"><i className="fa fa-star text-primary mr-2" />{destination.data.rating} <small>{destination.data.reviews}</small></h6>
-                        <h5 className="m-0">{destination.data.prices}</h5>
+              {Object.keys(destination).map((city) => (
+                <div className="col-lg-4 col-md-6 mb-4" key={city}>
+                  <div className="package-item bg-white mb-2" onClick={() => openModal(destination.data.name)}>
+                    <img className="img-fluid" src={destination.data.image} alt="" />
+                    <div className="p-4">
+                      <div className="d-flex justify-content-between mb-3">
+                        <small className="m-0"><i className="fa fa-map-marker-alt text-primary mr-2" />{destination.data.name}</small>
+                        <small className="m-0"><i className="fa fa-calendar-alt text-primary mr-2" />{destination.data.duration}</small>
+                        <small className="m-0"><i className="fa fa-user text-primary mr-2" />{destination.data.person}</small>
+                      </div>
+                      <a className="h5 text-decoration-none">{destination.data.description}</a>
+                      <div className="border-top mt-4 pt-4">
+                        <div className="d-flex justify-content-between">
+                          <h6 className="m-0"><i className="fa fa-star text-primary mr-2" />{destination.data.rating} <small>{destination.data.reviews}</small></h6>
+                          <h5 className="m-0">{destination.data.prices}</h5>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              ))}
             </div>
           )}
         </div>
