@@ -69,6 +69,7 @@ function Pack() {
             ))}
           </div>
         </div>
+        <Packres  cityy={city}  />
       </div>
 
     {/* Packages End */}

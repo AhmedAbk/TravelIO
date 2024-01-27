@@ -1,9 +1,9 @@
-import React from 'react'
+import React from 'react';
 
-function Packres() {
+const Packres = () => {
   return (
-    <div>Packres</div>
-  )
-}
+    <div>dsdsd</div>
+  );
+};
 
-export default Packres
+export default Packres;

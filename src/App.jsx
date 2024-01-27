@@ -16,6 +16,7 @@ import Mal from './components/Dest/Afr.jsx';
 import Dash from './components/Dashboard/Dash.jsx'; 
 import Paris from './components/Pack/Paris.jsx'; 
 import Destres from './components/Dest/destres.jsx'; 
+import Packres from './components/Pack/Packres.jsx';
 const routes = [
   { path: '/', element: <Home /> },
   { path: '/Pack', element: <Pack /> },
@@ -44,6 +45,7 @@ function App() {
             
             ))}
             <Route path='/Dest/:id' element={<Destres/>}/>
+            <Route path='/Pack/:id' element={<Packres/>}/>
           </Routes>  
           
         </BrowserRouter> 

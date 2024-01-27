@@ -65,7 +65,7 @@ function Dest() {
         </div>
       </div>
 
-       <Destres  destinations={destinations}/>
+       <Destres  destination={destinations}/>
       
     </div>
   );
