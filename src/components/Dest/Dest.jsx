@@ -6,9 +6,7 @@ import Destres from './destres';
 
 
 function Dest() {
-  const [destinations, setDestinations] = useState([]);
-
-  
+  const [destinations, setDestinations] = useState([]);  
   const [selectedDestination, setSelectedDestination] = useState(null);
   
   console.log({destinations});
@@ -67,7 +65,7 @@ function Dest() {
         </div>
       </div>
 
-       <Destres  destination={destinations}/>
+       <Destres  destinations={destinations}/>
       
     </div>
   );
