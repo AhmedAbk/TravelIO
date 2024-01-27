@@ -33,18 +33,16 @@ const Destres = () => {
 
   if (loading) {
     return <div>Loading...</div>;
-  }
+  } 
 
   if (error) {
     return <div>Error: {error}</div>;
   }
 
-  // Render the destination information
   return (
     <div>
-      <h2>{destination.name}</h2>
-      desc<p>{destination.description}</p>
-      {/* Add more elements to display other destination information */}
+      <h2>{destination.data.name}</h2>
+      desc<p>{destination.data.description}</p> 
     </div>
   );
 };

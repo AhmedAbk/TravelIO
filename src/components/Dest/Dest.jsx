@@ -6,7 +6,7 @@ import Destres from './destres';
 function Dest() {
   const [destinations, setDestinations] = useState([]);
   const [selectedDestination, setSelectedDestination] = useState(null);
-
+  
   useEffect(() => {
     const fetchDestinations = async () => {
       try {
