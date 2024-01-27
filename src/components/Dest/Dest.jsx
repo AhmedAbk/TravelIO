@@ -1,20 +1,15 @@
 // Dest.js
-
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Destres from './destres';
 
-
 function Dest() {
-  const [destinations, setDestinations] = useState([]);  
+  const [destinations, setDestinations] = useState([]);
   const [selectedDestination, setSelectedDestination] = useState(null);
-  
-  console.log({destinations});
 
   useEffect(() => {
     const fetchDestinations = async () => {
       try {
-        // Replace the URL with your actual API endpoint
         const response = await fetch('http://localhost:3001/api/dest');
         const data = await response.json();
         setDestinations(data.data);
@@ -65,8 +60,8 @@ function Dest() {
         </div>
       </div>
 
-       <Destres  destination={destinations}/>
-      
+      {/* Display the detailed information of the selected destination */}
+      {selectedDestination && <Destres />}
     </div>
   );
 }

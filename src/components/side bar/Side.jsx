@@ -1,6 +1,6 @@
 import React from 'react';
 import './side.css';
-
+import { Link } from 'react-router-dom';
 function Side() {
   const destinations = [
     { name: 'United States', cities: ['Miami', 'Los Angeles'] },
@@ -18,11 +18,13 @@ function Side() {
           <div className="col-md-4 mb-4 sidebar">
             <h4 className="sidebar-header text-white">TRAVELIO</h4>
             <ul className="list-unstyled components">
+              <Link to='/Pack'>
               <li>
                 <a href="#">Packages</a>
               </li>
+              </Link>
               <li>
-                <a href="#">Destination</a>
+              <Link to='/Dest'> <a href="#">Destination</a></Link>
                 <ul className="list-unstyled">
                   {destinations.map((destination, index) => (
                     <li key={index}>
