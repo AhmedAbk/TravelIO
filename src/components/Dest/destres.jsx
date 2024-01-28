@@ -46,6 +46,7 @@ const Destres = () => {
     const { image, prices, description, duration, person, rating, reviews, name } = destination?.data || {};
 
     if (image && prices && description && duration && person && rating && reviews) {
+      
       return (
         <>
           <img className="img-fluid" src={image} alt={`${name}`} />
