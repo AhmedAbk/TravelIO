@@ -44,34 +44,38 @@ const Destres = () => {
 
   const getCityInformation = (city) => {
     const { data } = destination || {};
-    
+  
     if (data && Array.isArray(data)) {
       // If there are multiple cities, map over the array
-      return data.map((cityData, index) => (
-        <div key={index}>
-          {/* Render information for each city */}
-          <img className="img-fluid" src={cityData.image} alt={`${cityData.name}`} />
-          <div className="p-4">
-            <div className="d-flex justify-content-between mb-3">
-              <small className="m-0"><i className="fa fa-map-marker-alt text-primary mr-2" />{cityData.name}</small>
-              <small className="m-0"><i className="fa fa-calendar-alt text-primary mr-2" />{cityData.duration}</small>
-              <small className="m-0"><i className="fa fa-user text-primary mr-2" />{cityData.person}</small>
-            </div>
-            <a className="h5 text-decoration-none">{cityData.description}</a>
-            <div className="border-top mt-4 pt-4">
-              <div className="d-flex justify-content-between">
-                <h6 className="m-0"><i className="fa fa-star text-primary mr-2" />{cityData.rating} <small>{cityData.reviews}</small></h6>
-                <h5 className="m-0">{cityData.prices}</h5>
+      return data.map((cityData, index) => {
+        if (cityData.name === city) {
+          return (
+            <div key={index}>
+              {/* Render information for the selected city */}
+              <img className="img-fluid" src={cityData.image} alt={`${cityData.name}`} />
+              <div className="p-4">
+                <div className="d-flex justify-content-between mb-3">
+                  <small className="m-0"><i className="fa fa-map-marker-alt text-primary mr-2" />{cityData.name}</small>
+                  <small className="m-0"><i className="fa fa-calendar-alt text-primary mr-2" />{cityData.duration}</small>
+                  <small className="m-0"><i className="fa fa-user text-primary mr-2" />{cityData.person}</small>
+                </div>
+                <a className="h5 text-decoration-none">{cityData.description}</a>
+                <div className="border-top mt-4 pt-4">
+                  <div className="d-flex justify-content-between">
+                    <h6 className="m-0"><i className="fa fa-star text-primary mr-2" />{cityData.rating} <small>{cityData.reviews}</small></h6>
+                    <h5 className="m-0">{cityData.prices}</h5>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-      ));
+          );
+        }
+      });
     } else if (data) {
       // If there is only one city
       const { image, prices, description, duration, person, rating, reviews, name } = data;
-
-      if (image && prices && description && duration && person && rating && reviews) {
+  
+      if (name === city) {
         return (
           <>
             <img className="img-fluid" src={image} alt={`${name}`} />
@@ -89,7 +93,7 @@ const Destres = () => {
                 </div>
               </div>
             </div>
-
+  
             <Link to="/Login">
               <button className="btn btn-primary">Book Now</button>
             </Link>

@@ -1,27 +1,27 @@
-import React, {useState,useEffect} from 'react' 
-import { Link } from 'react-router-dom'
-import Packres from './Packres'
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import Packres from './Packres';
+
 function Pack() {
-  const [city,setcity]=useState([])
-  const[selectedcity,setselectedcity]=useState(null);
+  const [city, setCity] = useState([]);
+  const [selectedCity, setSelectedCity] = useState(null);
 
-
-  useEffect (()=>{
-    const fetchcity = async () =>{
+  useEffect(() => {
+    const fetchCity = async () => {
       try {
-        const res= await fetch('http://localhost:3001/api/cities');
-        const data=await res.json();
-        setcity(data.data)
+        const res = await fetch('http://localhost:3001/api/cities');
+        const data = await res.json();
+        setCity(data.data);
       } catch (error) {
         console.error('Error fetching cities:', error);
       }
     };
-    fetchcity();
-  },[])
+    fetchCity();
+  }, []);
 
-  const handleCityClick = (cityy) =>{
-    setselectedcity(city)
-  }
+  const handleCityClick = (city) => {
+    setSelectedCity(city);
+  };
 
 
   return (
@@ -36,30 +36,30 @@ function Pack() {
             <h1>Explore Top Packages</h1>
           </div>
           <div className="row">
-            {city.map((cityy) => (
-              <div className="col-lg-4 col-md-6 mb-4" key={cityy.id}>
+            {city.map((city) => (
+              <div className="col-lg-4 col-md-6 mb-4" key={city.id}>
                 <div
                   className="package-item bg-white mb-2"
-                  onClick={() => handleCityClick(cityy)}
+                  onClick={() => handleCityClick(city)}
                 >
-                  <Link to={`/Pack/${cityy.id}`}>
+                  <Link to={`/Pack/${city.id}`}>
                     <img
                       className="img-fluid"
-                      src={cityy.image}
+                      src={city.image}
                       style={{ width: '100%', height: '200px', objectFit: 'cover' }}
-                      alt={cityy.name}
+                      alt={city.name}
                     />
                 <div className="p-4">
                   <div className="d-flex justify-content-between mb-3">
-                    <small className="m-0"><i className="fa fa-map-marker-alt text-primary mr-2" />{cityy.name}</small>
-                    <small className="m-0"><i className="fa fa-calendar-alt text-primary mr-2" />{cityy.duration}</small>
-                    <small className="m-0"><i className="fa fa-user text-primary mr-2" />{cityy.person}</small>
+                    <small className="m-0"><i className="fa fa-map-marker-alt text-primary mr-2" />{city.name}</small>
+                    <small className="m-0"><i className="fa fa-calendar-alt text-primary mr-2" />{city.duration}</small>
+                    <small className="m-0"><i className="fa fa-user text-primary mr-2" />{city.person}</small>
                   </div>
-                  <div className="h5 text-decoration-none">{cityy.description}</div>
+                  <div className="h5 text-decoration-none">{city.description}</div>
                   <div className="border-top mt-4 pt-4">
                       <div className="d-flex justify-content-between">
-                        <h6 className="m-0"><i className="fa fa-star text-primary mr-2" />{cityy.rating} <small>{cityy.review}</small></h6>
-                        <h5 className="m-0">{cityy.prices}</h5>
+                        <h6 className="m-0"><i className="fa fa-star text-primary mr-2" />{city.rating} <small>{city.review}</small></h6>
+                        <h5 className="m-0">{city.prices}</h5>
                       </div>
                    </div>
                 </div>
@@ -69,11 +69,9 @@ function Pack() {
             ))}
           </div>
         </div>
-        <Packres  cityy={city}  />
       </div>
 
-    {/* Packages End */}
-     
+      {selectedCity && <Packres id={selectedCity.id} />}
 
     </div>
   )
