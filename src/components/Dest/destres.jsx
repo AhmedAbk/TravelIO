@@ -43,33 +43,61 @@ const Destres = () => {
   };
 
   const getCityInformation = (city) => {
-    const { image, prices, description, duration, person, rating, reviews, name } = destination?.data || {};
-
-    if (image && prices && description && duration && person && rating && reviews) {
-      
-      return (
-        <>
-          <img className="img-fluid" src={image} alt={`${name}`} />
+    const { data } = destination || {};
+    
+    if (data && Array.isArray(data)) {
+      // If there are multiple cities, map over the array
+      return data.map((cityData, index) => (
+        <div key={index}>
+          {/* Render information for each city */}
+          <img className="img-fluid" src={cityData.image} alt={`${cityData.name}`} />
           <div className="p-4">
             <div className="d-flex justify-content-between mb-3">
-              <small className="m-0"><i className="fa fa-map-marker-alt text-primary mr-2" />{name}</small>
-              <small className="m-0"><i className="fa fa-calendar-alt text-primary mr-2" />{duration}</small>
-              <small className="m-0"><i className="fa fa-user text-primary mr-2" />{person}</small>
+              <small className="m-0"><i className="fa fa-map-marker-alt text-primary mr-2" />{cityData.name}</small>
+              <small className="m-0"><i className="fa fa-calendar-alt text-primary mr-2" />{cityData.duration}</small>
+              <small className="m-0"><i className="fa fa-user text-primary mr-2" />{cityData.person}</small>
             </div>
-            <a className="h5 text-decoration-none">{description}</a>
+            <a className="h5 text-decoration-none">{cityData.description}</a>
             <div className="border-top mt-4 pt-4">
               <div className="d-flex justify-content-between">
-                <h6 className="m-0"><i className="fa fa-star text-primary mr-2" />{rating} <small>{reviews}</small></h6>
-                <h5 className="m-0">{prices}</h5>
+                <h6 className="m-0"><i className="fa fa-star text-primary mr-2" />{cityData.rating} <small>{cityData.reviews}</small></h6>
+                <h5 className="m-0">{cityData.prices}</h5>
               </div>
             </div>
           </div>
+        </div>
+      ));
+    } else if (data) {
+      // If there is only one city
+      const { image, prices, description, duration, person, rating, reviews, name } = data;
 
-          <Link to="/Login">
-            <button className="btn btn-primary">Book Now</button>
-          </Link>
-        </>
-      );
+      if (image && prices && description && duration && person && rating && reviews) {
+        return (
+          <>
+            <img className="img-fluid" src={image} alt={`${name}`} />
+            <div className="p-4">
+              <div className="d-flex justify-content-between mb-3">
+                <small className="m-0"><i className="fa fa-map-marker-alt text-primary mr-2" />{name}</small>
+                <small className="m-0"><i className="fa fa-calendar-alt text-primary mr-2" />{duration}</small>
+                <small className="m-0"><i className="fa fa-user text-primary mr-2" />{person}</small>
+              </div>
+              <a className="h5 text-decoration-none">{description}</a>
+              <div className="border-top mt-4 pt-4">
+                <div className="d-flex justify-content-between">
+                  <h6 className="m-0"><i className="fa fa-star text-primary mr-2" />{rating} <small>{reviews}</small></h6>
+                  <h5 className="m-0">{prices}</h5>
+                </div>
+              </div>
+            </div>
+
+            <Link to="/Login">
+              <button className="btn btn-primary">Book Now</button>
+            </Link>
+          </>
+        );
+      } else {
+        return `Information about ${city}.`;
+      }
     } else {
       return `Information about ${city}.`;
     }
@@ -87,21 +115,22 @@ const Destres = () => {
             <p>Loading...</p>
           ) : (
             <div className="row">
-              {Object.keys(destination).map((city) => (
-                <div className="col-lg-4 col-md-6 mb-4" key={city}>
-                  <div className="package-item bg-white mb-2" onClick={() => openModal(destination.data.name)}>
-                    <img className="img-fluid" src={destination.data.image} alt="" />
+              {destination?.data?.map((cityData, index) => (
+                <div className="col-lg-4 col-md-6 mb-4" key={index} onClick={() => openModal(cityData.name)}>
+                  <div className="package-item bg-white mb-2">
+                    {/* Your existing package item rendering logic */}
+                    <img className="img-fluid" src={cityData.image}style={{ letterSpacing: '5px' }}/>
                     <div className="p-4">
                       <div className="d-flex justify-content-between mb-3">
-                        <small className="m-0"><i className="fa fa-map-marker-alt text-primary mr-2" />{destination.data.name}</small>
-                        <small className="m-0"><i className="fa fa-calendar-alt text-primary mr-2" />{destination.data.duration}</small>
-                        <small className="m-0"><i className="fa fa-user text-primary mr-2" />{destination.data.person}</small>
+                        <small className="m-0"><i className="fa fa-map-marker-alt text-primary mr-2" />{cityData.name}</small>
+                        <small className="m-0"><i className="fa fa-calendar-alt text-primary mr-2" />{cityData.duration}</small>
+                        <small className="m-0"><i className="fa fa-user text-primary mr-2" />{cityData.person}</small>
                       </div>
-                      <a className="h5 text-decoration-none">{destination.data.description}</a>
+                      <a className="h5 text-decoration-none">{cityData.description}</a>
                       <div className="border-top mt-4 pt-4">
                         <div className="d-flex justify-content-between">
-                          <h6 className="m-0"><i className="fa fa-star text-primary mr-2" />{destination.data.rating} <small>{destination.data.reviews}</small></h6>
-                          <h5 className="m-0">{destination.data.prices}</h5>
+                          <h6 className="m-0"><i className="fa fa-star text-primary mr-2" />{cityData.rating} <small>{cityData.reviews}</small></h6>
+                          <h5 className="m-0">{cityData.prices}</h5>
                         </div>
                       </div>
                     </div>

@@ -51,11 +51,14 @@ app.get("/api/cities/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const result = await pool.query("SELECT * FROM cities c, dest d WHERE c.destid=d.destid and c.destid= $1", [id]);
-    res.json({ data: result.rows[0] });
+    
+    res.json({ data: result.rows });
   } catch (error) {
     console.error(error.message);
+    res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+
 app.get('/city/:id', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM cities ');
