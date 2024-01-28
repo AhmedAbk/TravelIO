@@ -26,10 +26,9 @@ function Paris() {
   return (
     <div>
       <div className="container mt-5">
-        <div className="row">
-          {/* Paris Image */}
+        <div className="row"> 
           <div className="col-md-6 mb-4">
-            <img src={citydetail.image} alt="Paris" className="img-fluid" />
+            <img src={citydetail.image}   className="img-fluid" />
           </div> 
           <div className="col-md-6">
             <h2 className="mb-4">{citydetail.name}</h2>
@@ -39,7 +38,7 @@ function Paris() {
               <li>Duration: {citydetail.duration}</li>
               <li>Prices starting from {citydetail.prices}</li>
             </ul> 
-            <button className="btn btn-primary mt-3" onClick={() => alert('Book Now clicked!')}>
+            <button className="btn btn-primary mt-3" >
               Book Now
             </button>
           </div>
