@@ -45,7 +45,7 @@ app.get('/api/cities', async (req, res) => {
   }
 });
 
-//get city by id
+//get city by id 
 
 app.get("/api/cities/:id", async (req, res) => {
   try {
@@ -59,6 +59,22 @@ app.get("/api/cities/:id", async (req, res) => {
   }
 });
 
+app.get('/api/test/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const result = await pool.query('SELECT * FROM cities WHERE id = $1', [id]);
+
+    if (result.rows.length > 0) {
+      res.json(result.rows[0]);
+    } else {
+      res.status(404).json({ message: 'City not found' });
+    }
+  } catch (error) {
+    console.error('Error executing query', error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+});
 app.get('/city/:id', async (req, res) => {
   try {
     const { id } = req.params;
