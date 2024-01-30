@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function Reg() {
-  const [value, setValue] = React.useState({
+function Reg() 
+{
+  const initialFormState ={
     name: '',
     phone: '',
     cin: '',
@@ -10,8 +11,8 @@ function Reg() {
     pass: '',
     married: false,
     single: false,
-  });
-
+  };
+  const [value, setValue] = React.useState(initialFormState);
   console.log(value);
 
   const handleSubmit = async (e) => {
@@ -25,11 +26,23 @@ function Reg() {
         },
         body: JSON.stringify(value),
       });
-      const responseText = await response.text();
-      console.log(responseText);
+
+      if (response.ok) {
+        const responseText = await response.text();
+        console.log(responseText);
+        window.alert('Registration successful');
+        
+        setValue(initialFormState);
+      } else if (response.status === 400) {
+        const errorData = await response.json();
+        window.alert(errorData.error);
+      } else {
+        throw new Error('Registration failed');
+      }
     } catch (error) {
       console.error('Error submitting registration:', error.message);
     }
+ 
   };
 
   return (

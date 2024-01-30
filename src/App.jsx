@@ -9,8 +9,7 @@ import Login from './components/Login/Login.jsx';
  
 import Home from './components/Home/home.jsx';
  
-import Dash from './components/Dashboard/Dash.jsx'; 
-import Paris from './components/Pack/Paris.jsx'; 
+import Dash from './components/Dashboard/Dash.jsx';  
 import Destres from './components/Dest/destres.jsx'; 
 import Packres from './components/Pack/Packres.jsx';
 const routes = [
@@ -18,9 +17,7 @@ const routes = [
   { path: '/Pack', element: <Pack /> },
   { path: '/Dest', element: <Dest /> },
   { path: '/Reg', element: <Reg /> },
-  { path: '/Login', element: <Login /> },
- 
-  { path: '/Paris', element: <Paris /> },
+  { path: '/Login', element: <Login /> }, 
   { path: '/Dashboard', element: <Dash /> },
 ];
 

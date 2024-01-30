@@ -125,6 +125,14 @@ app.post('/api/register', async (req, res) => {
   const { name, phone, cin, email, pass, married, single } = req.body;
 
   try {
+    // Check if the cin already exists in the database
+    const cinCheck = await pool.query('SELECT * FROM "user" WHERE cin = $1', [cin]);
+    if (cinCheck.rows.length > 0) {
+      // If cin already exists, return an error
+      return res.status(400).json({ error: 'CIN must be unique' });
+   
+    } 
+    // If cin is unique, proceed with the insertion
     const result = await pool.query(
       'INSERT INTO "user" (name, phone, cin, email, pass, married, single) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *',
       [name, phone, cin, email, pass, married, single]

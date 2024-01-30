@@ -107,7 +107,7 @@ function Login() {
                       </button>
                     </div>
                     <div className="form-group">
-                      You already have an account, <Link to="/Reg"> Click Here</Link>
+                      You don't have an account, <Link to="/Reg"> Click Here</Link>
                     </div>
                   </form>
                 </div>
