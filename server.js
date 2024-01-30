@@ -163,6 +163,7 @@ app.get('/api/user/:email', async (req, res) => {
 });
 //auth
 
+//addcity
 app.post('/api/addcities', async (req, res) => {
   const newCity = req.body;
 
@@ -191,7 +192,10 @@ app.post('/api/addcities', async (req, res) => {
   }
 });
 
+//addcity
 
+
+//addDest
 app.post('/api/adddestinations', async (req, res) => {
   const newDestination = req.body;
 
@@ -209,8 +213,10 @@ app.post('/api/adddestinations', async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+//addDest
 
 
+//GetDest
 app.get('/api/alldestinations', async (req, res) => {
   try {
     // Fetch all destinations from the database
@@ -223,8 +229,10 @@ app.get('/api/alldestinations', async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+//GetDest
 
  
+//deleteDestid
 
 app.delete('/api/alldestinations/:destid', async (req, res) => {
   const destid = req.params.destid;
@@ -239,6 +247,11 @@ app.delete('/api/alldestinations/:destid', async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+//deleteDestid
+
+
+//GetDestid
+
 app.put('/api/alldestinations/:destid', async (req, res) => {
   const destid = parseInt(req.params.destid);
   const updatedDestination = req.body;
@@ -259,3 +272,4 @@ app.put('/api/alldestinations/:destid', async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+//GetDestid
