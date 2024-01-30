@@ -6,12 +6,13 @@ import Pack from './components/Pack/Pack';
 import Reg from './components/Reg/Reg.jsx';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from './components/Login/Login.jsx';
- 
-import Home from './components/Home/home.jsx';
- 
+import Home from './components/Home/home.jsx'; 
 import Dash from './components/Dashboard/Dash.jsx';  
 import Destres from './components/Dest/destres.jsx'; 
 import Packres from './components/Pack/Packres.jsx';
+import AddCity from './components/add/add.jsx';
+import AddDest from './components/add/add dest.jsx';
+import GetAllDestinations from './components/add/getalldest.jsx';
 const routes = [
   { path: '/', element: <Home /> },
   { path: '/Pack', element: <Pack /> },
@@ -19,6 +20,10 @@ const routes = [
   { path: '/Reg', element: <Reg /> },
   { path: '/Login', element: <Login /> }, 
   { path: '/Dashboard', element: <Dash /> },
+
+  { path: '/AddCity', element: <AddCity /> }, 
+  { path: '/AddDest', element: <AddDest /> },
+  { path: "/GetAllDest", element: <GetAllDestinations/>}
 ];
 
 function App() {
