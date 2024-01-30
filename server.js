@@ -224,6 +224,7 @@ app.get('/api/alldestinations', async (req, res) => {
   }
 });
 
+ 
 
 app.delete('/api/alldestinations/:destid', async (req, res) => {
   const destid = req.params.destid;

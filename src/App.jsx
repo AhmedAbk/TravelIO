@@ -12,7 +12,7 @@ import Destres from './components/Dest/destres.jsx';
 import Packres from './components/Pack/Packres.jsx';
 import AddCity from './components/add/add.jsx';
 import AddDest from './components/add/add dest.jsx';
-import GetAllDestinations from './components/add/getalldest.jsx';
+import GetAllDestinations from './components/add/getalldest.jsx'; 
 const routes = [
   { path: '/', element: <Home /> },
   { path: '/Pack', element: <Pack /> },
@@ -20,10 +20,9 @@ const routes = [
   { path: '/Reg', element: <Reg /> },
   { path: '/Login', element: <Login /> }, 
   { path: '/Dashboard', element: <Dash /> },
-
   { path: '/AddCity', element: <AddCity /> }, 
   { path: '/AddDest', element: <AddDest /> },
-  { path: "/GetAllDest", element: <GetAllDestinations/>}
+  { path: "/GetAllDest", element: <GetAllDestinations/>}, 
 ];
 
 function App() {
