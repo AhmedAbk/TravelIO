@@ -250,26 +250,68 @@ app.delete('/api/alldestinations/:destid', async (req, res) => {
 //deleteDestid
 
 
-//GetDestid
+//update dest
 
-app.put('/api/alldestinations/:destid', async (req, res) => {
-  const destid = parseInt(req.params.destid);
-  const updatedDestination = req.body;
+app.put('/api/alldestinations/:id', async (req, res) => {
+  const destId = req.params.id;
+  const { destname, destimg } = req.body;
 
   try {
+    // Update the destination in PostgreSQL
     const result = await pool.query(
       'UPDATE dest SET destname = $1, destimg = $2 WHERE destid = $3 RETURNING *',
-      [updatedDestination.destname, updatedDestination.destimg, destid]
+      [destname, destimg, destId]
     );
 
-    if (result.rows.length > 0) {
-      res.json(result.rows[0]);
-    } else {
-      res.status(404).json({ error: 'Destination not found' });
+    if (result.rowCount === 0) {
+      return res.status(404).json({ error: 'Destination not found' });
     }
+
+    const updatedDestination = result.rows[0];
+
+    // Update the destination in the in-memory array (optional)
+    destinations = destinations.map((dest) => (dest.destid === destId ? { ...dest, destname, destimg } : dest));
+
+    res.status(200).json({ message: 'Destination updated successfully', updatedDestination });
   } catch (error) {
     console.error('Error:', error.message);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
-//GetDestid
+//update dest
+
+//GetCity
+app.get('/api/allcity', async (req, res) => {
+  try {
+    // Fetch all city from the database
+    const result = await pool.query('SELECT * FROM cities');
+    const city = result.rows;
+
+    res.json(city);
+  } catch (error) {
+    console.error('Error fetching city from database:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+//GetCity
+
+
+//delete City by id
+
+app.delete('/api/allcity/:id', async (req, res) => {
+  const id = req.params.id;
+
+  try {
+    // Delete the city from the database
+    await pool.query('DELETE FROM dest WHERE cities = $1', [id]);
+
+    res.json({ message: 'Destination deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting city from database:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+//delete City by id
+
+
+ 

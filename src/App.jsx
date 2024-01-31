@@ -13,6 +13,7 @@ import Packres from './components/Pack/Packres.jsx';
 import AddCity from './components/add/add.jsx';
 import AddDest from './components/add/add dest.jsx';
 import GetAllDestinations from './components/add/getalldest.jsx'; 
+import GetAllcity from './components/add/getallcity.jsx';
 const routes = [
   { path: '/', element: <Home /> },
   { path: '/Pack', element: <Pack /> },
@@ -23,6 +24,7 @@ const routes = [
   { path: '/AddCity', element: <AddCity /> }, 
   { path: '/AddDest', element: <AddDest /> },
   { path: "/GetAllDest", element: <GetAllDestinations/>}, 
+  {path: "/GetAllCity", element: <GetAllcity/>}
 ];
 
 function App() {
