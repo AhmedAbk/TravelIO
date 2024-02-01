@@ -70,7 +70,7 @@ function Pack() {
           </div>
         </div>
       </div>
-
+    
       {selectedCity && <Packres id={selectedCity.id} />}
 
     </div>
