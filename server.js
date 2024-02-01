@@ -37,10 +37,10 @@ app.use(express.json());
 //get all city
 app.get('/api/cities', async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM cities');
+    const result = await pool.query('SELECT * FROM city');
     res.json({ data: result.rows });
   } catch (error) {
-    console.error('Error fetching cities:', error);
+    console.error('Error fetching city:', error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
@@ -50,7 +50,7 @@ app.get('/api/cities', async (req, res) => {
 app.get("/api/cities/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const result = await pool.query("SELECT * FROM cities c, dest d WHERE c.destid=d.destid and c.destid= $1", [id]);
+    const result = await pool.query("SELECT * FROM city c, dest d WHERE c.destid=d.destid and c.destid= $1", [id]);
     
     res.json({ data: result.rows });
   } catch (error) {
@@ -63,7 +63,7 @@ app.get('/api/test/:id', async (req, res) => {
   const { id } = req.params;
 
   try {
-    const result = await pool.query('SELECT * FROM cities WHERE id = $1', [id]);
+    const result = await pool.query('SELECT * FROM city WHERE id = $1', [id]);
 
     if (result.rows.length > 0) {
       res.json(result.rows[0]);
@@ -78,7 +78,7 @@ app.get('/api/test/:id', async (req, res) => {
 app.get('/city/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    const result = await pool.query('SELECT * FROM cities WHERE id = $1', [id]);
+    const result = await pool.query('SELECT * FROM city WHERE id = $1', [id]);
 
     if (result.rows.length > 0) {
       res.json({ data: result.rows[0] });
@@ -96,7 +96,7 @@ app.get('/api/dest', async (req, res) => {
     const result = await pool.query('SELECT * FROM dest');
     res.json({ data: result.rows });
   } catch (error) {
-    console.error('Error fetching cities:', error);
+    console.error('Error fetching city:', error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
@@ -170,7 +170,7 @@ app.post('/api/addcities', async (req, res) => {
   try {
     // Insert the new city into the database
     const result = await pool.query(
-      'INSERT INTO cities(name, image, prices, description, duration, person, rating, reviews, destid) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *',
+      'INSERT INTO city(name, image, prices, description, duration, person, rating, reviews, destid) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *',
       [
         newCity.name,
         newCity.image,
@@ -280,11 +280,36 @@ app.put('/api/alldestinations/:id', async (req, res) => {
 });
 //update dest
 
+//update city
+app.put('/api/allcity/:cityId', async (req, res) => {
+  const { cityId } = req.params;
+  const { name, image } = req.body;
+
+  try {
+    const updateQuery = 'UPDATE city SET name = $1, image = $2 WHERE id = $3 RETURNING *';
+    const values = [name, image, cityId];
+
+    const result = await pool.query(updateQuery, values);
+
+    if (result.rowCount === 1) {
+      res.status(200).json(result.rows[0]);
+    } else {
+      res.status(404).json({ error: 'City not found' });
+    }
+  } catch (error) {
+    console.error('Error updating city:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+
+//update city
+
 //GetCity
 app.get('/api/allcity', async (req, res) => {
   try {
     // Fetch all city from the database
-    const result = await pool.query('SELECT * FROM cities');
+    const result = await pool.query('SELECT * FROM city');
     const city = result.rows;
 
     res.json(city);
@@ -297,21 +322,16 @@ app.get('/api/allcity', async (req, res) => {
 
 
 //delete City by id
-
 app.delete('/api/allcity/:id', async (req, res) => {
   const id = req.params.id;
 
-  try {
-    // Delete the city from the database
-    await pool.query('DELETE FROM dest WHERE cities = $1', [id]);
+  try { 
+    await pool.query('DELETE FROM city WHERE id = $1', [id]);
 
-    res.json({ message: 'Destination deleted successfully' });
+    res.json({ message: 'city deleted successfully' });
   } catch (error) {
     console.error('Error deleting city from database:', error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
-});
-//delete City by id
-
-
+}); 
  

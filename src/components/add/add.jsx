@@ -71,8 +71,8 @@ function AddCity({ onAddCity }) {
           <input type="text" className="form-control" id="name" name="name" value={formData.name} onChange={handleChange} required />
         </div>
         <div className="form-group">
-          <label htmlFor="id">ID:</label>
-          <input type="text" className="form-control" id="id" name="id" value={formData.id} onChange={handleChange} />
+          <label htmlFor="cityId">ID:</label>
+          <input type="text" className="form-control" id="cityId" name="id" value={formData.id} onChange={handleChange} />
         </div>
         <div className="form-group">
           <label htmlFor="image">Image:</label>
