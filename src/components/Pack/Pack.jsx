@@ -55,7 +55,7 @@ function Pack() {
                     <small className="m-0"><i className="fa fa-calendar-alt text-primary mr-2" />{city.duration}</small>
                     <small className="m-0"><i className="fa fa-user text-primary mr-2" />{city.person}</small>
                   </div>
-                  <div className="h5 text-decoration-none">{city.description}</div>
+                  <div className="h5 text-decoration-none">Visit {city.name}</div>
                   <div className="border-top mt-4 pt-4">
                       <div className="d-flex justify-content-between">
                         <h6 className="m-0"><i className="fa fa-star text-primary mr-2" />{city.rating} <small>{city.review}</small></h6>

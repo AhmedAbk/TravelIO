@@ -131,7 +131,7 @@ const Destres = () => {
                         <small className="m-0"><i className="fa fa-calendar-alt text-primary mr-2" />{cityData.duration}</small>
                         <small className="m-0"><i className="fa fa-user text-primary mr-2" />{cityData.person}</small>
                       </div>
-                      <a className="h5 text-decoration-none">{cityData.description}</a>
+                      <a className="h5 text-decoration-none"> Visit {cityData.name}</a>
                       <div className="border-top mt-4 pt-4">
                         <div className="d-flex justify-content-between">
                           <h6 className="m-0"><i className="fa fa-star text-primary mr-2" />{cityData.rating} <small>{cityData.reviews}</small></h6>
