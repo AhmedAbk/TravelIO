@@ -10,10 +10,10 @@ import Home from './components/Home/home.jsx';
 import Dash from './components/Dashboard/Dash.jsx';  
 import Destres from './components/Dest/destres.jsx'; 
 import Packres from './components/Pack/Packres.jsx';
-import AddCity from './components/add/add.jsx';
-import AddDest from './components/add/add dest.jsx';
-import GetAllDestinations from './components/add/getalldest.jsx'; 
-import GetAllcity from './components/add/getallcity.jsx';
+import AddCity from './components/admin/add.jsx';
+import AddDest from './components/admin/add dest.jsx';
+import GetAllDestinations from './components/admin/getalldest.jsx'; 
+import GetAllcity from './components/admin/getallcity.jsx';
 const routes = [
   { path: '/', element: <Home /> },
   { path: '/Pack', element: <Pack /> },
