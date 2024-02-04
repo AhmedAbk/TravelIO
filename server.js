@@ -335,3 +335,35 @@ app.delete('/api/allcity/:id', async (req, res) => {
   }
 }); 
  
+//reservations
+app.post('/api/reservations', async (req, res) => {
+  const { full_name, nb_person, start_date, end_date, price, city_id } = req.body;
+
+  try {
+    // Check if the provided city_id exists in the 'city' table
+    const cityExists = await pool.query('SELECT 1 FROM city WHERE id = $1', [city_id]);
+
+    if (cityExists.rows.length === 0) {
+      return res.status(400).json({ success: false, error: 'City does not exist' });
+    }
+
+    // Insert reservation into the 'reservation' table
+    const result = await pool.query(
+      'INSERT INTO reservation (full_name, nb_person, start_date, end_date, price, city_id) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *',
+      [full_name, nb_person, start_date, end_date, price, city_id]
+    );
+
+    res.json({ success: true, reservation: result.rows[0] });
+  } catch (error) {
+    console.error('Error inserting reservation:', error);
+
+    // Check for specific error codes related to foreign key constraints
+    if (error.code === '23503') {
+      return res.status(400).json({ success: false, error: 'Invalid city_id' });
+    }
+
+    res.status(500).json({ success: false, error: 'Error inserting reservation' });
+  }
+});
+
+//reservations
