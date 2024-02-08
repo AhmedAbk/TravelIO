@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import { Link } from 'react-router-dom';
 function Dash() {
   const [income, setIncome] = useState(5000);
   const [numDestinations, setNumDestinations] = useState(10);
@@ -15,15 +15,21 @@ function Dash() {
           <div className="col-md-3">
             <div className="sidebar">
               <ul>
+                <Link to="/AddDest">
                 <li>
-                  <a href="#destinations">Destinations</a>
+                  Destinations 
                 </li>
+                </Link>
+                <Link to='/GetAllCity'>
                 <li>
-                  <a href="#packages">Packages</a>
+                  Packages 
                 </li>
-                <li>
-                  <a href="#users">Users</a>
+                </Link>
+                <Link to='/Users'>
+
+                <li> Users 
                 </li> 
+                </Link>
               </ul>
             </div>
           </div>

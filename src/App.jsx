@@ -15,6 +15,7 @@ import AddDest from './components/admin/add dest.jsx';
 import GetAllDestinations from './components/admin/getalldest.jsx'; 
 import GetAllcity from './components/admin/getallcity.jsx';
 import Res from './components/res/res.jsx';
+import GetAllUsers from './components/admin/Users.jsx';
 const routes = [
   { path: '/', element: <Home /> },
   { path: '/Pack', element: <Pack /> },
@@ -26,7 +27,8 @@ const routes = [
   { path: '/AddDest', element: <AddDest /> },
   { path: "/GetAllDest", element: <GetAllDestinations/>}, 
   {path: "/GetAllCity", element: <GetAllcity/>},
-  {path: "/res", element: <Res/>}
+  {path: "/res", element: <Res/>},
+  {path: "/Users", element: <GetAllUsers/>}
 
 ];
 

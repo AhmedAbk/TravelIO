@@ -9,7 +9,7 @@ function GetAllCity() {
   useEffect(() => {
     const fetchCities = async () => {
       try {
-        const response = await fetch('http://localhost:3001/api/allcity');
+        const response = await fetch('http://localhost:3001/api/allcitiees');
         if (response.ok) {
           const data = await response.json();
           setCities(data);

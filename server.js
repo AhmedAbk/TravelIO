@@ -377,3 +377,49 @@ app.get('/api/allcitiees', async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+
+app.get('/api/allusers', async (req, res) => {
+  try {
+    const { rows } = await pool.query('SELECT * FROM "user"');
+    res.json(rows);
+  } catch (error) {
+    console.error('Error fetching users:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+// Endpoint to update a user
+app.put('/api/user/:id', async (req, res) => {
+  const userId = req.params.id;
+  const { name, image } = req.body;
+  try {
+    const { rowCount } = await pool.query(
+      'UPDATE "user" SET name = $1, image = $2 WHERE id = $3',
+      [name, image, userId]
+    );
+    if (rowCount === 1) {
+      res.sendStatus(204); // No Content
+    } else {
+      res.status(404).json({ error: 'User not found' });
+    }
+  } catch (error) {
+    console.error('Error updating user:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+// Endpoint to delete a user
+app.delete('/api/user/:id', async (req, res) => {
+  const userId = req.params.id;
+  try {
+    const { rowCount } = await pool.query('DELETE FROM "user" WHERE id = $1', [userId]);
+    if (rowCount === 1) {
+      res.sendStatus(204); // No Content
+    } else {
+      res.status(404).json({ error: 'User not found' });
+    }
+  } catch (error) {
+    console.error('Error deleting user:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
