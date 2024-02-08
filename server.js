@@ -304,21 +304,8 @@ app.put('/api/allcity/:cityId', async (req, res) => {
 
 
 //update city
-
-//GetCity
-app.get('/api/allcity', async (req, res) => {
-  try {
-    // Fetch all city from the database
-    const result = await pool.query('SELECT * FROM city');
-    const city = result.rows;
-
-    res.json(city);
-  } catch (error) {
-    console.error('Error fetching city from database:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-});
-//GetCity
+ 
+ 
 
 
 //delete City by id
@@ -335,35 +322,58 @@ app.delete('/api/allcity/:id', async (req, res) => {
   }
 }); 
  
-//reservations
+//reservations 
 app.post('/api/reservations', async (req, res) => {
-  const { full_name, nb_person, start_date, end_date, price, city_id } = req.body;
-
   try {
-    // Check if the provided city_id exists in the 'city' table
-    const cityExists = await pool.query('SELECT 1 FROM city WHERE id = $1', [city_id]);
+    // Extract reservation data from request body
+    const { full_name, nb_person, start_date, end_date, price, city_id } = req.body;
 
-    if (cityExists.rows.length === 0) {
-      return res.status(400).json({ success: false, error: 'City does not exist' });
-    }
+    // Insert reservation into the database
+    const query = `
+      INSERT INTO reservation (full_name, nb_person, start_date, end_date, price, city_id)
+      VALUES ($1, $2, $3, $4, $5, $6)
+      RETURNING *;
+    `;
+    const values = [full_name, nb_person, start_date, end_date, price, city_id];
 
-    // Insert reservation into the 'reservation' table
-    const result = await pool.query(
-      'INSERT INTO reservation (full_name, nb_person, start_date, end_date, price, city_id) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *',
-      [full_name, nb_person, start_date, end_date, price, city_id]
-    );
+    const result = await pool.query(query, values);
 
-    res.json({ success: true, reservation: result.rows[0] });
+    // Respond with the inserted reservation data
+    res.status(201).json(result.rows[0]);
   } catch (error) {
     console.error('Error inserting reservation:', error);
+    res.status(500).json({ error: 'Failed to insert reservation' });
+  }
+});
+//reservations
 
-    // Check for specific error codes related to foreign key constraints
-    if (error.code === '23503') {
-      return res.status(400).json({ success: false, error: 'Invalid city_id' });
+app.get('/api/selectedcity/:id', async (req, res) => {
+  const cityId = parseInt(req.params.id);
+
+  try {
+    const { rows } = await pool.query('SELECT * FROM city WHERE id = $1', [cityId]);
+
+    if (rows.length > 0) {
+      res.json(rows[0]);
+    } else {
+      res.status(404).json({ error: 'City not found' });
     }
-
-    res.status(500).json({ success: false, error: 'Error inserting reservation' });
+  } catch (error) {
+    console.error('Error fetching city details:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
   }
 });
 
-//reservations
+
+app.get('/api/allcitiees', async (req, res) => {
+  try {
+    // Fetch all cities from the database
+    const result = await pool.query('SELECT * FROM city');
+    const cities = result.rows;
+
+    res.json(cities);
+  } catch (error) {
+    console.error('Error fetching cities from database:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
