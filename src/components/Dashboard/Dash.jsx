@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import GetAllCity from '../admin/getallcity';
+import GetAllDestinations from '../admin/getalldest';
+
 function Dash() {
   const [income, setIncome] = useState(5000);
   const [numDestinations, setNumDestinations] = useState(10);
   const [numPackages, setNumPackages] = useState(25);
   const [numUsers, setNumUsers] = useState(100);
   const [numReviews, setNumReviews] = useState(50); 
- 
 
   return (
     <div>
@@ -16,19 +18,13 @@ function Dash() {
             <div className="sidebar">
               <ul>
                 <Link to="/AddDest">
-                <li>
-                  Destinations 
-                </li>
+                  <li>Destinations</li>
                 </Link>
                 <Link to='/GetAllCity'>
-                <li>
-                  Packages 
-                </li>
+                  <li>Packages</li>
                 </Link>
                 <Link to='/Users'>
-
-                <li> Users 
-                </li> 
+                  <li>Users</li> 
                 </Link>
               </ul>
             </div>
@@ -78,15 +74,14 @@ function Dash() {
                 </div>
               </div>
             </div>
+           <div > <GetAllCity/></div>
+           <div> <GetAllDestinations/></div>
 
-          
           </div>
         </div>
       </div>
     </div>
   );
 }
-  
 
 export default Dash;
-
