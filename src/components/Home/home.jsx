@@ -1,7 +1,6 @@
 import React from 'react' 
 import Dest from '../Dest/Dest' 
 import Search from '../Search/Search'
-import Side from '../side bar/Side'
 import Foot from '../Footer/Foot'
 import Pack from '../Pack/Pack'
 function Home() {
@@ -11,7 +10,6 @@ function Home() {
        
         <Search/>
         <Pack/>
-       <Side/>
        
        <Foot/>
     </div>

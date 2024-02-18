@@ -21,6 +21,9 @@ function Nav() {
             <div className="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
               <ul className="navbar-nav ml-auto py-0">
                 <li className="nav-item nav-link">
+                  <Link to="/Res">Reservation</Link>
+                </li>  
+                <li className="nav-item nav-link">
                   <Link to="/Pack">Packages</Link>
                 </li>
                 <li className="nav-item nav-link">
