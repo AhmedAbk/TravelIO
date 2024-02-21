@@ -8,7 +8,7 @@ function Foot() {
       <div className="row pt-5">
         <div className="col-lg-3 col-md-6 mb-5">
           <a href className="navbar-brand">
-            <h1 className="text-primary"><span className="text-white">TRAVEL</span>ER</h1>
+            <h1 className="text-primary"><span className="text-white">TRAVEL</span>IO</h1>
           </a>
           <p>Travel with us</p>
         

@@ -15,7 +15,7 @@ function Reg()
   const [value, setValue] = React.useState(initialFormState);
   console.log(value);
 
-  const handleSubmit = async (e) => {
+  const CreateAcc = async (e) => {
     e.preventDefault();
 
     try {
@@ -68,7 +68,7 @@ function Reg()
                   <h1 className="text-white m-0">Sign Up Now</h1>
                 </div>
                 <div className="card-body rounded-bottom bg-white p-5">
-                  <form onSubmit={handleSubmit}>
+                  <form onSubmit={CreateAcc}>
                     <div className="form-group">
                       <input
                         type="text"
@@ -81,7 +81,7 @@ function Reg()
                     </div>
                     <div className="form-group">
                       <input
-                        type="text"
+                        type="number"
                         className="form-control p-4"
                         placeholder="Phone Number"
                         required
@@ -91,7 +91,7 @@ function Reg()
                     </div>
                     <div className="form-group">
                       <input
-                        type="text"
+                        type="number"
                         className="form-control p-4"
                         placeholder="Cin"
                         required
