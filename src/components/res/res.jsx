@@ -37,7 +37,7 @@ function Res() {
     }
   };
 
-  const handleSubmit = async (event) => {
+  const handleReservation = async (event) => {
     event.preventDefault();
     try {
       const totalPrice = formData.price * formData.nb_person;
@@ -80,7 +80,7 @@ function Res() {
   return (
     <div className="container mt-5">
       <h2>Reservation Form</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleReservation}>
         <div className="mb-3">
           <label htmlFor="full_name" className="form-label">Full Name</label>
           <input

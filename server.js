@@ -391,14 +391,14 @@ app.get('/api/allusers', async (req, res) => {
 // Endpoint to update a user
 app.put('/api/user/:id', async (req, res) => {
   const userId = req.params.id;
-  const { name, image } = req.body;
+  const { name, phone,email, pass } = req.body;
   try {
     const { rowCount } = await pool.query(
-      'UPDATE "user" SET name = $1, image = $2 WHERE id = $3',
-      [name, image, userId]
+      'UPDATE "user" SET name = $1, phone = $2, email = $3, pass = $4 WHERE id = $5',
+      [name, phone,email,pass, userId]
     );
     if (rowCount === 1) {
-      res.sendStatus(204); // No Content
+      res.sendStatus(204);
     } else {
       res.status(404).json({ error: 'User not found' });
     }
