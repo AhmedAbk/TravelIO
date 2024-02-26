@@ -423,3 +423,60 @@ app.delete('/api/user/:id', async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+
+//admin stats
+app.get('/stats/cities', async (req, res) => {
+  try {
+    // Fetch all cities from the database
+    const result = await pool.query('SELECT count(id) as numofcites FROM city');
+    const cities = result.rows;
+
+    res.json(cities);
+  } catch (error) {
+    console.error('Error fetching cities from database:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+
+app.get('/stats/income', async (req, res) => {
+  try {
+    // Fetch all cities from the database
+    const result = await pool.query('SELECT sum(price) as Income from reservation');
+    const cities = result.rows;
+
+    res.json(cities);
+  } catch (error) {
+    console.error('Error fetching income from database:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+
+app.get('/stats/dests', async (req, res) => {
+  try {
+    // Fetch all cities from the database
+    const result = await pool.query('SELECT count(destid) as numofdests from dest');
+    const cities = result.rows;
+
+    res.json(cities);
+  } catch (error) {
+    console.error('Error fetching dests from database:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+
+app.get('/stats/users', async (req, res) => {
+  try {
+    // Fetch all cities from the database
+    const result = await pool.query('SELECT count(id) as numofusers from "user"');
+    const cities = result.rows;
+
+    res.json(cities);
+  } catch (error) {
+    console.error('Error fetching users from database:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
