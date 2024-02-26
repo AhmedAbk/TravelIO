@@ -454,8 +454,7 @@ app.get('/stats/income', async (req, res) => {
 
 
 app.get('/stats/dests', async (req, res) => {
-  try {
-    // Fetch all cities from the database
+  try { 
     const result = await pool.query('SELECT count(destid) as numofdests from dest');
     const cities = result.rows;
 
@@ -468,8 +467,7 @@ app.get('/stats/dests', async (req, res) => {
 
 
 app.get('/stats/users', async (req, res) => {
-  try {
-    // Fetch all cities from the database
+  try { 
     const result = await pool.query('SELECT count(id) as numofusers from "user"');
     const cities = result.rows;
 
