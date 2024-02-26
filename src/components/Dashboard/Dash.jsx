@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import GetAllCity from '../admin/getallcity';  
-import GetAllDestinations from '../admin/getalldest';  
+import GetAllCity from '../admin/getallcity';
+import GetAllDestinations from '../admin/getalldest';
 
 function Dash() {
   const [city, setCity] = useState([]);
@@ -10,15 +10,18 @@ function Dash() {
   const [user, setUser] = useState([]);
 
   useEffect(() => {
-    const fetchstat = async () => {
-    
+    const fetchData = async () => {
+      try {
+        await getCitiesData();
+        await getIncomeData();
+        await getUsersData();
+        await getDestData();
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
     };
-  
-    fetchstat();
-    getCitiesData();
-    getIncomeData();
-    getUsersData();
-    getDestData();
+
+    fetchData();
   }, []);
 
   const getUsersData = async () => {
@@ -50,11 +53,12 @@ function Dash() {
       console.error('Error fetching income data:', error);
     }
   };
+
   const getDestData = async () => {
     try {
       const res = await fetch('http://localhost:3001/stats/dests');
       const data = await res.json();
-      setDest(data.data);
+      setDest(data);
     } catch (error) {
       console.error('Error fetching destination data:', error);
     }
