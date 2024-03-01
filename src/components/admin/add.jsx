@@ -29,17 +29,14 @@ function AddCity({ onAddCity }) {
       const response = await fetch('http://localhost:3001/api/addcities', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          // Add any additional headers if needed
+          'Content-Type': 'application/json', 
         },
         body: JSON.stringify(formData),
       });
 
       if (response.ok) {
         const newCity = await response.json();
-        onAddCity(newCity);
-
-        // Clear the form after successful submission
+        onAddCity(newCity); 
         setFormData({
           id: '',
           name: '',
@@ -52,12 +49,10 @@ function AddCity({ onAddCity }) {
           reviews: '',
           destid: '',
         });
-      } else {
-        // Handle error response
+      } else { 
         console.error('Error:', response.status, response.statusText);
       }
-    } catch (error) {
-      // Handle network or other errors
+    } catch (error) { 
       console.error('Error:', error.message);
     }
   };

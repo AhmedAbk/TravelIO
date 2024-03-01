@@ -29,10 +29,10 @@ app.listen(port, () => {
 
 //server setup
 
-//middel wear
+//middlewear
 app.use(cors());
 app.use(express.json());  
-//middel wear
+//middlewear
 
 //get all city
 app.get('/api/cities', async (req, res) => {
@@ -46,7 +46,6 @@ app.get('/api/cities', async (req, res) => {
 });
 
 //get city by id 
-
 app.get("/api/cities/:id", async (req, res) => {
   try {
     const { id } = req.params;

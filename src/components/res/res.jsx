@@ -52,9 +52,7 @@ function Res() {
 
       if (!response.ok) {
         throw new Error('Failed to submit reservation');
-      }
-
-      // Reset form data after successful submission
+      } 
       setFormData({
         full_name: '',
         nb_person: 0,

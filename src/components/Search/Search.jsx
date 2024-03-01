@@ -45,8 +45,7 @@ const Search = () => {
             </div>
           </div>
         </div>
-      </div> 
-      {/* Display filtered results only when there is a search query */}
+      </div>  
       {searchQuery && (
         <div className="result-container row">
           {filteredResults.map((result, index) => (

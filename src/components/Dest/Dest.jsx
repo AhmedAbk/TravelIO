@@ -57,9 +57,7 @@ function Dest() {
             ))}
           </div>
         </div>
-      </div>
-
-      {/* Display the detailed information of the selected destination */}
+      </div> 
       {selectedDestination && <Destres />}
     </div>
   );

@@ -29,20 +29,16 @@ function AddDest({ onAddDestination }) {
 
       if (response.ok) {
         const newDestination = await response.json();
-        onAddDestination(newDestination);
-
-        // Clear the form after successful submission
+        onAddDestination(newDestination); 
         setFormData({
           destid: '',
           destname: '',
           destimg: '',
         });
-      } else {
-        // Handle error response
+      } else { 
         console.error('Error:', response.status, response.statusText);
       }
-    } catch (error) {
-      // Handle network or other errors
+    } catch (error) { 
       console.error('Error:', error.message);
     }
   };

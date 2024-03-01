@@ -45,13 +45,11 @@ const Destres = () => {
   const getCityInformation = (city) => {
     const { data } = destination || {};
   
-    if (data && Array.isArray(data)) {
-      // If there are multiple cities, map over the array
+    if (data && Array.isArray(data)) { 
       return data.map((cityData, index) => {
         if (cityData.name === city) {
           return (
-            <div key={index}>
-              {/* Render information for the selected city */}
+            <div key={index}> 
               <img className="img-fluid" src={cityData.image} alt={`${cityData.name}`} />
               <div className="p-4">
                 <div className="d-flex justify-content-between mb-3">
@@ -72,7 +70,7 @@ const Destres = () => {
         }
       });
     } else if (data) {
-      // If there is only one city
+      // one city
       const { image, prices, description, duration, person, rating, reviews, name } = data;
   
       if (name === city) {
@@ -121,8 +119,7 @@ const Destres = () => {
             <div className="row">
               {destination?.data?.map((cityData, index) => (
                 <div className="col-lg-4 col-md-6 mb-4" key={index} onClick={() => openModal(cityData.name)}>
-                  <div className="package-item bg-white mb-2">
-                    {/* Your existing package item rendering logic */}
+                  <div className="package-item bg-white mb-2"> 
                     <img className="img-fluid" src={cityData.image} 
                       style={{ width: '100%', height: '250px', objectFit: 'cover' }}/>
                     <div className="p-4">

@@ -3,9 +3,6 @@ import { Link } from 'react-router-dom';
 import GetAllCity from '../admin/getallcity';
 import GetAllDest from '../admin/getalldest';
 
-
-// Assuming the provided backend code is in a separate file named app.js
-
 async function getIncomeData() {
   try {
     const response = await fetch('http://localhost:3001/stats/income');
@@ -13,7 +10,7 @@ async function getIncomeData() {
     return data;
   } catch (error) {
     console.error('Error fetching income data:', error);
-    throw error; // Re-throw the error for handling in the component
+    throw error; 
   }
 }
 
@@ -24,7 +21,7 @@ async function getDestData() {
     return data;
   } catch (error) {
     console.error('Error fetching destination data:', error);
-    throw error; // Re-throw the error for handling in the component
+    throw error; 
   }
 }
 
@@ -35,7 +32,7 @@ async function getCitiesData() {
     return data;
   } catch (error) {
     console.error('Error fetching cities data:', error);
-    throw error; // Re-throw the error for handling in the component
+    throw error; 
   }
 }
 
@@ -46,7 +43,7 @@ async function getUsersData() {
     return data;
   } catch (error) {
     console.error('Error fetching users data:', error);
-    throw error; // Re-throw the error for handling in the component
+    throw error;  
   }
 }
 
@@ -66,14 +63,13 @@ function Dash() {
         setDestValue(dest[0].numofdests);
         
         const city = await getCitiesData();
-        setCityValue(city[0].numofcites); // Extract the first city value
+        setCityValue(city[0].numofcites); 
 
 
         const user = await getUsersData();
         setUserValue(user[0].numofusers);
       } catch (error) {
-        console.error('Error fetching data:', error);
-        // Handle the error here, e.g., display an error message to the user
+        console.error('Error fetching data:', error); 
       }
     };
 
