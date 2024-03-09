@@ -16,6 +16,7 @@ import GetAllDestinations from './components/admin/getalldest.jsx';
 import GetAllcity from './components/admin/getallcity.jsx';
 import Res from './components/res/res.jsx';
 import GetAllUsers from './components/admin/Users.jsx';
+import Cart from './components/Cart/Cart.jsx';
 const routes = [
   { path: '/', element: <Home /> },
   { path: '/Pack', element: <Pack /> },
@@ -28,7 +29,8 @@ const routes = [
   { path: "/GetAllDest", element: <GetAllDestinations/>}, 
   {path: "/GetAllCity", element: <GetAllcity/>},
   {path: "/res", element: <Res/>},
-  {path: "/Users", element: <GetAllUsers/>}
+  {path: "/Users", element: <GetAllUsers/>,
+  path: "/Cart", element: <Cart/>}
 
 ];
 

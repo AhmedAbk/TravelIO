@@ -477,3 +477,30 @@ app.get('/stats/users', async (req, res) => {
   }
 });
 
+app.get('/api/allreservations', async (req, res) => {
+  try {
+    const { rows } = await pool.query('SELECT * FROM reservation WHERE full_name LIKE \'Ahmed\'');
+    res.json(rows);
+  } catch (error) {
+    console.error('Error fetching reservations:', error.message);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+
+app.delete('/api/cancelreservation/:id', async (req, res) => {
+  const reservationId = req.params.id;
+
+  try {
+    const result = await pool.query('DELETE FROM reservation WHERE id = $1 RETURNING *', [reservationId]);
+
+    if (result.rowCount === 0) {
+      res.status(404).json({ error: 'Reservation not found' });
+    } else {
+      res.json(result.rows[0]);
+    }
+  } catch (error) {
+    console.error('Error canceling reservation:', error.message);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+
 function Nav() {
   return (
     <div>
@@ -24,6 +25,11 @@ function Nav() {
                   <Link to="/Res">Reservation</Link>
                 </li>  
                 <li className="nav-item nav-link">
+                  <Link to="/Cart">
+                    Cart
+                  </Link>
+                </li>
+                <li className="nav-item nav-link">
                   <Link to="/Pack">Packages</Link>
                 </li>
                 <li className="nav-item nav-link">
@@ -31,7 +37,8 @@ function Nav() {
                 </li>
                 <li className="nav-item nav-link">
                   <Link to="/Login">Login</Link>
-                </li>  
+                </li>
+            
               </ul>
             </div>
           </nav>
