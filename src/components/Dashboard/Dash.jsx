@@ -84,10 +84,10 @@ function Dash() {
             <div className="sidebar">
               <ul>
                 <li>
-                  <Link to="/GetAllDest">Destinations</Link>
+                  <Link to="/AddDest">Destinations</Link>
                 </li>
                 <li>
-                  <Link to='/GetAllCity'>Packages</Link>
+                  <Link to='/AddCity'>Packages</Link>
                 </li>
                 <li>
                   <Link to='/Users'>Users</Link>

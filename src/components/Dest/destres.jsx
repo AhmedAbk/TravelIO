@@ -158,6 +158,11 @@ const Destres = () => {
               </div>
               <div className="modal-body">
                 {getCityInformation(selectedCity)}
+                <Link to='/Res'>
+              <button className="btn btn-primary mt-3"  >
+                book now
+              </button>
+              </Link>
               </div>
             </div>
           </div>
