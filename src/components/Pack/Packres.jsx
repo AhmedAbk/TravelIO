@@ -45,7 +45,7 @@ const Packres = () => {
               <h4 className="mt-4">Package Details:</h4>
               <ul>
                 <li>Duration: {selectedCity.duration}</li>
-                <li>Prices starting from {selectedCity.prices}</li>
+                <li>Prices starting from {selectedCity.prices} $</li>
               </ul>
               <Link to='/Reg'>
               <button className="btn btn-primary mt-3"  >
