@@ -337,7 +337,6 @@ app.post('/api/reservations', async (req, res) => {
 
     const result = await pool.query(query, values);
 
-    // Respond with the inserted reservation data
     res.status(201).json(result.rows[0]);
   } catch (error) {
     console.error('Error inserting reservation:', error);
